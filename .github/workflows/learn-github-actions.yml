@@ -7,6 +7,6 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
-      - working-directory: githubaction
       - run: ./getdata.sh
+        working-directory: githubaction
 
