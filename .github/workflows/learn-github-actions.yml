@@ -7,9 +7,9 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
-   - run: ./getdata.sh
+      - run: ./getdata.sh
         working-directory: githubaction
-   - run: gh release upload pre0.1 githubaction/test3.csv 
-     env:
-       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: gh release upload pre0.1 githubaction/test3.csv 
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
