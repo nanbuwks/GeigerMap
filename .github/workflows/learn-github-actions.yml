@@ -4,6 +4,10 @@ on: [push]
 jobs:
   HelloWorld:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v4
-      - run: ls -alh
+      - name: step1
+        working-directory: githubaction
+      - run: ./getdata.sh
+
