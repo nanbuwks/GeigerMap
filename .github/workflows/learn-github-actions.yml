@@ -6,6 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::tidyverse
+            any::googlesheets4
+
       - name: Get current daytime
         uses: actions/checkout@v4
       - run: echo "RELEASEDATE=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
