@@ -7,15 +7,15 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
-        name: Get current daytime
-        run: echo "RELEASEDATE=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+      - name: Get current daytime
+      - run: echo "RELEASEDATE=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
       - uses: actions/checkout@v4
-        name: Getcsvdata
-        run: ./getdata.sh
+      - name: Getcsvdata
+      - run: ./getdata.sh
         working-directory: githubaction
       - uses: actions/checkout@v4
-        name: makerelease
-        run: |
+      - name: makerelease
+      - run: |
           echo "リリース名:$NOW"
           git tag $RELEASEDATE
           git push origin $RELEASEDATE
