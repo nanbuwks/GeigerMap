@@ -4,17 +4,14 @@ on: [push]
 jobs:
   uploadrelease:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Set up R
-        uses: r-lib/actions/setup-r@v2
-
-      - name: Install packages
-        uses: r-lib/actions/setup-r-dependencies@v2
+      - uses: actions/checkout@v1
+      - name: R Build and Checks
+        uses: Swechhya/R-actions@v1.2
         with:
-          packages: |
-            any::tidyverse
-            any::googlesheets4
+          action: 'all'
+          needsBioc: false
+          buildSubDirectory: './'
 
       - name: Get current daytime
         uses: actions/checkout@v4
