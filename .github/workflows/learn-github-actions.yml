@@ -7,9 +7,19 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+      - name: Get current daytime
+        run: echo "RELEASEDATE=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+      - name: Getcsvdata
       - run: ./getdata.sh
         working-directory: githubaction
-      - run: gh release upload pre0.2 githubaction/test3.csv 
+      - name: makerelease
+      - run: |
+          echo "リリース名:$NOW"
+          git tag $RELEASEDATE
+          git push origin $RELEASEDATE
+          gh release -p create $RELEASEDATE
+          gh release upload $RELEASEDATE githubaction/test3.csv 
+          gh release edit $RELEASEDATE --prerelease=false --latest
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
