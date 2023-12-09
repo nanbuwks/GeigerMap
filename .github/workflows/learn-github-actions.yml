@@ -12,10 +12,10 @@ jobs:
       - run: ./getdata.sh
         working-directory: githubaction
       - run: |
-          echo "リリース名:$NOW"
+          echo "リリース名:$RELEASEDATE"
           git tag $RELEASEDATE
           git push origin $RELEASEDATE
-          gh release -p create $RELEASEDATE
+          gh release create $RELEASEDATE --prerelease --notes automake
           gh release upload $RELEASEDATE githubaction/test3.csv 
           gh release edit $RELEASEDATE --prerelease=false --latest
         env:
