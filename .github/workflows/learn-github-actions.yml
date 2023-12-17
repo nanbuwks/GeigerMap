@@ -13,6 +13,7 @@ jobs:
         with:
           packages: |
             any::dplyr
+            any::ggplot2
       - name: Get current daytime
         uses: actions/checkout@v4
       - run: echo "RELEASEDATE=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
