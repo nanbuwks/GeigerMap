@@ -33,16 +33,13 @@ jobs:
         uses: actions/configure-pages@v4
       - name: Get current daytime
         uses: actions/checkout@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: 'Pages'
       - run: echo "RELEASEDATE=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
       - name: make graph
         run: |
            ./getdata.sh
            Rscript makegraph.R test3-100.csv plot2.png
            cp plot2.png ../Pages/data
+           rm ../Pages/index.html
         working-directory: githubaction
       - name: release
         env:
@@ -58,6 +55,11 @@ jobs:
         run: |
           gh release upload $RELEASEDATE githubaction/test3-100.csv 
           gh release edit $RELEASEDATE --prerelease=false --latest
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: 'Pages'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v3
