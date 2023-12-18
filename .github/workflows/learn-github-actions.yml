@@ -40,6 +40,9 @@ jobs:
            Rscript makegraph.R test3-100.csv plot2.png
            cp plot2.png ../Pages/data
            rm ../Pages/index.html
+           echo "hello" > ../Pages/index2.html
+           ls -alh ../Pages
+           ls -alh ../Pages/data
         working-directory: githubaction
       - name: release
         env:
