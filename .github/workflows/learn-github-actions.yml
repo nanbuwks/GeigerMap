@@ -36,6 +36,7 @@ jobs:
         run: |
            ./getdata.sh
            Rscript makegraph.R test3-100.csv plot2.png
+           cp plot2.png ../Pages/data
         working-directory: githubaction
       - name: release
         env:
@@ -56,8 +57,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          # Upload entire repository
-          path: '.'
+          path: 'Pages'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v3
