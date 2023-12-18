@@ -38,12 +38,8 @@ jobs:
         run: |
            ./getdata.sh
            Rscript makegraph.R test3-100.csv plot2.png
+           mkdir ../Pages/data
            cp plot2.png ../Pages/data
-           cp plot2.png ../Pages
-           echo "hello" > ../Pages/index2.html
-           ls -alh .
-           ls -alh ../Pages
-           ls -alh ../Pages/data
         working-directory: githubaction
       - name: release
         env:
