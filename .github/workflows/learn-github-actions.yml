@@ -10,8 +10,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-
-
 jobs:
   uploadrelease:
     environment:
@@ -51,15 +49,4 @@ jobs:
         run: |
           gh release upload $RELEASEDATE githubaction/test3-100.csv 
           gh release edit $RELEASEDATE --prerelease=false --latest
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          # Upload entire repository
-          path: 'Pages'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v3
 
