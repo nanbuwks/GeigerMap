@@ -18,12 +18,12 @@ jobs:
         uses: actions/checkout@v4
       - run: echo "RELEASEDATE=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
       - name: make graph
-      - run: |
+        run: |
            ./getdata.sh
            Rscript makegraph.R test3-100.csv plot2.png
         working-directory: githubaction
       - name: release
-      - run: |
+        run: |
           echo "リリース名:$RELEASEDATE"
           git tag $RELEASEDATE
           git push origin $RELEASEDATE
