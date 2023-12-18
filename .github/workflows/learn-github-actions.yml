@@ -38,6 +38,9 @@ jobs:
           gh release upload $RELEASEDATE githubaction/test3-100.csv 
           gh release edit $RELEASEDATE --prerelease=false --latest
 
+
+name: GitHub Pages
+
 permissions:
   contents: read
   pages: write
@@ -46,7 +49,6 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
 jobs:
   # Single deploy job since we're just deploying
   deploy:
