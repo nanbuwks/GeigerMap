@@ -36,10 +36,9 @@ jobs:
       - run: echo "RELEASEDATE=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
       - name: make graph
         run: |
-           ./getdata.sh
-           Rscript makegraph.R test3-100.csv plot2.png
+           ./separate.py ../nodes.list > umap.csv
            mkdir ../Pages/data
-           cp plot2.png ../Pages/data
+           cp *.png *.tsv *.csv ../Pages/data
         working-directory: githubaction
       - name: release
         env:
@@ -53,7 +52,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload $RELEASEDATE githubaction/test3-100.csv 
+          gh release upload $RELEASEDATE Pages/data/* 
           gh release edit $RELEASEDATE --prerelease=false --latest
 
       - name: Upload artifact
