@@ -3,7 +3,10 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 on:
   push:
     branches: ["main"]
+  schedule:
+    - cron: '0 */2 * * *'
   workflow_dispatch:
+
 permissions:
   contents: write
   pages: write
